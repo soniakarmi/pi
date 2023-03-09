@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Appointment Invitation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      font-size: 28px;
+      color:#EFB914;
+    }
+
+    p {
+      font-size: 16px;
+      color: #555;
+      line-height: 1.5em;
+    }
+
+    table {
+      margin: 20px 0;
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 600px;
+      border: 1px solid #ccc;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ccc;
+    }
+
+    th {
+      font-weight: bold;
+      background-color: #f7f7f7;
+    }
+
+    a {
+      display: inline-block;
+      background-color: #3c4f6d;
+      color: #fff;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    a:hover {
+      background-color: #2a3a4f;
+    }
+
+    .logo {
+      display: block;
+      margin: 20px auto;
+      max-width: 200px;
+    }
+  </style>
+</head>
+<body>
+<h1>Appointment Invitation</h1>
+<p>Dear [[${user.name}]],</p>
+<p>You are cordially invited to attend an interview for admission to our university.</p>
+<table>
+
+  <tr>
+    <th>Start Time:</th>
+    <td>[[${holiday.startDate}]]</td>
+  </tr>
+  <tr>
+    <th>End Time:</th>
+    <td>[[${holiday.endDate}]]</td>
+  </tr>
+  <tr th:if="${holiday.type == 'MALADIE'}">
+    <th>Location:</th>
+    <td>[[${event.location}]]</td>
+  </tr>
+
+</table>
+<p>Please confirm your attendance by clicking the link below:</p>
+<a th:href="${x}">Confirm Attendance</a>
+<p>Best regards,</p>
+<p>The Admissions Team</p>
+</body>
+</html>

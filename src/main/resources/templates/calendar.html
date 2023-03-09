@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Calendrier des congés</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+<h1>Calendrier des congés</h1>
+sb.append("<style>
+  table {
+    border-collapse: collapse;
+  }
+
+  td {
+    border: 1px solid black;
+    padding: 10px;
+  }
+
+  .weekday {
+    background-color: lightgray;
+  }
+
+  .holiday {
+    background-color: lightblue;
+  }
+</style>");
+<table>
+  <thead>
+  <tr>
+    <th>Début</th>
+    <th>Fin</th>
+    <th>Type</th>
+    <th>Valide</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="holiday : ${holidays}">
+    <td th:text="${holiday.startDate}"></td>
+    <td th:text="${holiday.endDate}"></td>
+    <td th:text="${holiday.type}"></td>
+    <td>
+      <span th:if="${holiday.valid}">Oui</span>
+      <span th:if="${!holiday.valid}">Non</span>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
